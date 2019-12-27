@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[42]:
-
-
-#converts all midi files in the current folder
+# converts all midi files in the current folder
 
 import glob
 import os
@@ -26,13 +23,14 @@ majors = {
     'B': {'A-': 3, 'A': 2, 'B-': 1, 'B': 0, 'C': -1, 'D-': -2, 'D': -3, 'E-': -4, 'E': -5, 'F': 6, 'G-': 5, 'G': 4},
 }
 
-
+'''
 # same method in minors
 # A minors
-# minors = dict([("A-", 1),("A", 0),("B-", -1),("B", -2),("C", -3),("D-", -4),("D", -5),("E-", 6),("E", 5),("F", 4),("G-", 3),("G", 2)])
-# E minor
-# minors = dict([("A-", -4),("A", -5),("B-", 6),("B", 5),("C", 4),("D-", 3),("D", 2),("E-", 1),("E", 0),("F", -1),("G-", -2),("G", -3)])
-
+ minors = {
+    'A': {'A-': 1, 'A': 0, 'B-': -1, 'B': -2, 'C': -3, 'D-': -4, 'D': -5, 'E-': 6, 'E': 5, 'F': 4, 'G-': 3, 'G': 2},
+ }
+ '''
+ 
 # os.chdir("./")
 target = input('Type your target key: (ex: C, D-, D, E-, E ...)')
 
@@ -44,7 +42,7 @@ for file in glob.glob("*.mid"):
     #  halfStep: semitone range
     if key.mode == "major":
         halfSteps = majors[target][key.tonic.name]
-        print(halfSteps)
+        # print(halfSteps)
         
     elif key.mode == "minor":
         halfSteps = minors[target][key.tonic.name]
@@ -54,10 +52,3 @@ for file in glob.glob("*.mid"):
     print('Target key: ', key.tonic.name, key.mode)
     newFileName = "New_" + file
     newscore.write('midi',newFileName)
-
-
-# In[ ]:
-
-
-
-
