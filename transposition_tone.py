@@ -34,7 +34,7 @@ majors = {
 # os.chdir("./")
 target = input('Type your target key: (ex: C, D-, D, E-, E ...)')
 
-for file in glob.glob("*.mid"):
+for file in glob.glob("./scores/*.mid"):
     score = music21.converter.parse(file)
     key = score.analyze('key')
     print('Original key: ', key.tonic.name, key.mode)
@@ -50,5 +50,5 @@ for file in glob.glob("*.mid"):
     newscore = score.transpose(halfSteps)
     key = newscore.analyze('key')
     print('Target key: ', key.tonic.name, key.mode)
-    newFileName = "New_" + file
+    newFileName = file.split('_')[0] + '_' +key.tonic.name + key.mode + '.mid'
     newscore.write('midi',newFileName)
